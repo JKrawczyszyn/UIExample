@@ -1,27 +1,23 @@
-using System;
-using Utilities.States;
+using Cysharp.Threading.Tasks;
 using Zenject;
 
 namespace Entry.Controllers
 {
-    public class FlowController : IDisposable
+    public class FlowController
     {
         [Inject]
-        private readonly StateMachine<FlowState> stateMachine;
+        private SceneLoader sceneLoader;
 
-        public void LoadMenu()
+        public async UniTask LoadMenu()
         {
-            stateMachine.Transition<LoadMenuState>();
+            await sceneLoader.Unload(SceneName.Game);
+            await sceneLoader.Load(SceneName.Menu);
         }
 
-        public void LoadGame()
+        public async UniTask LoadGame(int level)
         {
-            stateMachine.Transition<LoadGameState>();
-        }
-
-        public void Dispose()
-        {
-            stateMachine.Stop();
+            await sceneLoader.Unload(SceneName.Menu);
+            await sceneLoader.Load(SceneName.Game);
         }
     }
 }

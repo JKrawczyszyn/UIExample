@@ -1,3 +1,5 @@
+using Menu.Controllers;
+using UnityEngine.InputSystem.UI;
 using Zenject;
 
 namespace Menu.Installers
@@ -6,6 +8,10 @@ namespace Menu.Installers
     {
         public override void InstallBindings()
         {
+            Container.Bind<MenuController>().AsSingle();
+
+            var inputModule = FindObjectOfType<InputSystemUIInputModule>();
+            Container.BindInstance(inputModule).AsSingle();
         }
     }
 }

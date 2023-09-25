@@ -1,12 +1,10 @@
 using UnityEngine;
-using Zenject;
 
 namespace Game
 {
     public class GameEntryPoint : MonoBehaviour
     {
-        [Inject]
-        public void Construct()
+        public void Start()
         {
             Debug.Log($"Start '{GetType().Name}'.");
         }

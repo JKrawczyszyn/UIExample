@@ -174,7 +174,8 @@ MonoBehaviour:
   _parentNewObjectsUnderSceneContext: 0
   _contractNames:
   - Game
-  _parentContractNames: []
+  _parentContractNames:
+  - Entry
 --- !u!4 &131170739
 Transform:
   m_ObjectHideFlags: 0

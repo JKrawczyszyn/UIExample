@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using Entry.Controllers;
 using UnityEngine;
 using Zenject;
@@ -8,13 +9,12 @@ namespace Entry
     {
         [Inject]
         private FlowController flowController;
-        
-        [Inject]
-        public void Construct()
+
+        public void Start()
         {
             Debug.Log($"Start '{GetType().Name}'.");
 
-            flowController.LoadMenu();
+            flowController.LoadMenu().Forget();
         }
     }
 }

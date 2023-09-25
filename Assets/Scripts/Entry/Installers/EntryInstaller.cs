@@ -1,18 +1,27 @@
 using Entry.Controllers;
-using Utilities.States;
+using UnityEngine;
 using Zenject;
 
 namespace Entry.Installers
 {
     public class EntryInstaller : MonoInstaller
     {
+        [SerializeField]
+        private Config config;
+
+        [SerializeField]
+        private ViewConfig viewConfig;
+
         public override void InstallBindings()
         {
-            Container.BindInterfacesAndSelfTo<FlowController>().AsSingle();
+            Container.BindInstance(config).AsSingle();
+
+            viewConfig.Initialize();
+            Container.BindInstance(viewConfig).AsSingle();
+
+            Container.Bind<FlowController>().AsSingle();
 
             Container.Bind<SceneLoader>().AsSingle();
-
-            StateMachineInstaller<FlowState>.Install(Container);
         }
     }
 }
