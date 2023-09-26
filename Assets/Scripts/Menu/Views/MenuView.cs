@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Entry;
 using Menu.Controllers;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -23,7 +22,7 @@ namespace Menu.Views
         private MenuButton startButton;
 
         [Inject]
-        private ViewConfig viewConfig;
+        private MenuViewConfig viewConfig;
 
         [Inject]
         private MenuController menuController;

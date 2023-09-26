@@ -1,5 +1,7 @@
 using Menu.Controllers;
+using UnityEngine;
 using UnityEngine.InputSystem.UI;
+using Utilities;
 using Zenject;
 
 namespace Menu.Installers
@@ -12,6 +14,8 @@ namespace Menu.Installers
 
             var inputModule = FindObjectOfType<InputSystemUIInputModule>();
             Container.BindInstance(inputModule).AsSingle();
+
+            Container.BindConfig<MenuViewConfig>("Configs/MenuViewConfig");
         }
     }
 }

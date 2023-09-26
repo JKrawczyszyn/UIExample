@@ -10,10 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a8db82df0744f599dbd2c9f787c16be, type: 3}
-  m_Name: ViewConfig
+  m_Name: MenuViewConfig
   m_EditorClassIdentifier: 
   levelColors:
   - {r: 0, g: 0.7647059, b: 1, a: 1}
   - {r: 0.42745098, g: 1, b: 0, a: 1}
   - {r: 1, g: 0.6666667, b: 0, a: 1}
   - {r: 1, g: 0.34901962, b: 0, a: 1}
+  <ObjectPrefab>k__BackingField: {fileID: 9091701594596359866, guid: 077bf990fc8aaee45a6dc7a3749f5f70, type: 3}
+  <BulletPrefab>k__BackingField: {fileID: 866722177700900498, guid: bb805833e247467489ae96394b0ee601, type: 3}

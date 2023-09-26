@@ -1,5 +1,7 @@
 using Entry.Controllers;
+using Entry.Models;
 using UnityEngine;
+using Utilities;
 using Zenject;
 
 namespace Entry.Installers
@@ -7,21 +9,19 @@ namespace Entry.Installers
     public class EntryInstaller : MonoInstaller
     {
         [SerializeField]
-        private Config config;
-
-        [SerializeField]
-        private ViewConfig viewConfig;
+        private Camera camera;
 
         public override void InstallBindings()
         {
-            Container.BindInstance(config).AsSingle();
+            Container.BindInstance(camera).AsSingle();
 
-            viewConfig.Initialize();
-            Container.BindInstance(viewConfig).AsSingle();
-
-            Container.Bind<FlowController>().AsSingle();
+            Container.Bind<GameFlowController>().AsSingle();
 
             Container.Bind<SceneLoader>().AsSingle();
+
+            Container.Bind<GameState>().AsSingle();
+
+            Container.BindConfig<Config>("Configs/Config");
         }
     }
 }

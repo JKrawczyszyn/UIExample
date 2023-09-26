@@ -13,3 +13,11 @@ MonoBehaviour:
   m_Name: Config
   m_EditorClassIdentifier: 
   levels: 3200000064000000fa000000f4010000
+  angleMin: 0
+  angleMax: 360
+  <Lives>k__BackingField: 0
+  turnTimeMin: 0
+  turnTimeMax: 1
+  <ShootTime>k__BackingField: 1
+  <ShooterRadius>k__BackingField: 0.4
+  <BulletSpeed>k__BackingField: 1

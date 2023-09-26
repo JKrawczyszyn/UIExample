@@ -15,13 +15,13 @@ namespace Menu.Controllers
         private Config config;
 
         [Inject]
-        private FlowController flowController;
+        private GameFlowController gameFlowController;
 
         private int levelSelected;
 
         public void Initialize()
         {
-            foreach (int level in config.levels)
+            foreach (int level in config.Levels)
                 OnCreateSelectLevelButton?.Invoke(level);
         }
 
@@ -32,7 +32,7 @@ namespace Menu.Controllers
 
             Debug.Log($"Start game level '{levelSelected}'.");
 
-            flowController.LoadGame(levelSelected).Forget();
+            gameFlowController.LoadGame(levelSelected).Forget();
         }
 
         public void SelectLevel(int level)
