@@ -1,6 +1,7 @@
 using Entry.Controllers;
 using Entry.Models;
 using UnityEngine;
+using UnityEngine.InputSystem.UI;
 using Utilities;
 using Zenject;
 
@@ -20,6 +21,9 @@ namespace Entry.Installers
             Container.Bind<SceneLoader>().AsSingle();
 
             Container.Bind<GameState>().AsSingle();
+
+            var inputModule = FindObjectOfType<InputSystemUIInputModule>();
+            Container.BindInstance(inputModule).AsSingle();
 
             Container.BindConfig<Config>("Configs/Config");
         }

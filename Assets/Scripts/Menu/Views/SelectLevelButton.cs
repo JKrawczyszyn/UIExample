@@ -1,3 +1,4 @@
+using Entry.Views;
 using UnityEngine;
 using UnityEngine.UI;
 using Utilities;

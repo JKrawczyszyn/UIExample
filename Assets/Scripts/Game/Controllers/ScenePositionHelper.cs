@@ -20,7 +20,7 @@ namespace Game.Controllers
         private Vector2 shooterPositionMax;
 
         [Inject]
-        public void Construct()
+        private void Construct()
         {
             screenMin = camera.ScreenToWorldPoint(new Vector3(0, 0, 0));
             screenMax = camera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));

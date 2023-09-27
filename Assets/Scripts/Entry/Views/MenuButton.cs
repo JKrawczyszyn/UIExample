@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Menu.Views
+namespace Entry.Views
 {
     public class MenuButton : MonoBehaviour
     {
@@ -22,7 +22,7 @@ namespace Menu.Views
             button.onClick.AddListener(() => { OnClick?.Invoke(); });
         }
 
-        public void SetActive(bool value)
+        public virtual void SetActive(bool value)
         {
             button.interactable = value;
         }

@@ -1,5 +1,7 @@
 ﻿using System;
+using Cysharp.Threading.Tasks;
 using Entry;
+using Entry.Controllers;
 using Entry.Models;
 using Game.Models;
 using UnityEngine;
@@ -23,6 +25,9 @@ namespace Game.Controllers
         [Inject]
         private GameModelFactory gameModelFactory;
 
+        [Inject]
+        private GameFlowController gameFlowController;
+
         private GameModel gameModel;
 
         public void Initialize()
@@ -39,7 +44,7 @@ namespace Game.Controllers
         {
             if (gameModel.ShootersCount() <= 1)
             {
-                Debug.Log("Game Over.");
+                gameFlowController.LoadGameOver().Forget();
 
                 return;
             }

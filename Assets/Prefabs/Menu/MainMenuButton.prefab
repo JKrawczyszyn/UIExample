@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e9d1aee11f99c694d870de541057bb20, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cc100684f0f5f594698a1859f7e893bb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -86,7 +86,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1958985260866311721, guid: c2f68a327d98b304eb05156fc2fd5993, type: 3}
       propertyPath: m_text
-      value: Start
+      value: Main Menu
       objectReference: {fileID: 0}
     - target: {fileID: 1958985260866311721, guid: c2f68a327d98b304eb05156fc2fd5993, type: 3}
       propertyPath: m_HorizontalAlignment
@@ -110,7 +110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3886954585397960090, guid: c2f68a327d98b304eb05156fc2fd5993, type: 3}
       propertyPath: m_Name
-      value: StartButton
+      value: MainMenuButton
       objectReference: {fileID: 0}
     - target: {fileID: 4919095438676263490, guid: c2f68a327d98b304eb05156fc2fd5993, type: 3}
       propertyPath: m_Navigation.m_Mode
@@ -119,7 +119,7 @@ PrefabInstance:
     - target: {fileID: 5981037481261555742, guid: c2f68a327d98b304eb05156fc2fd5993, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: e696d8b1acd345046953ca64e8f6ae03, type: 3}
+      objectReference: {fileID: 21300000, guid: 9aa9bc7d50964d744b19e25e63db9bfd, type: 3}
     - target: {fileID: 7712147852174506249, guid: c2f68a327d98b304eb05156fc2fd5993, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -150,7 +150,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7712147852174506249, guid: c2f68a327d98b304eb05156fc2fd5993, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 290
+      value: 480
       objectReference: {fileID: 0}
     - target: {fileID: 7712147852174506249, guid: c2f68a327d98b304eb05156fc2fd5993, type: 3}
       propertyPath: m_SizeDelta.y
@@ -216,7 +216,7 @@ PrefabInstance:
       addedObject: {fileID: 8255644954272426402}
     - targetCorrespondingSourceObject: {fileID: 3886954585397960090, guid: c2f68a327d98b304eb05156fc2fd5993, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8929209563629073732}
+      addedObject: {fileID: 3967896997564580396}
   m_SourcePrefab: {fileID: 100100000, guid: c2f68a327d98b304eb05156fc2fd5993, type: 3}
 --- !u!114 &2936624300517657706 stripped
 MonoBehaviour:
@@ -254,7 +254,7 @@ MonoBehaviour:
   button: {fileID: 2936624300517657706}
   textMesh: {fileID: 8623102133673138177}
   dpadImage: {fileID: 295681407576262461}
---- !u!114 &8929209563629073732
+--- !u!114 &3967896997564580396
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -263,7 +263,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6446308695856976818}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b03759324304dfe9d5058ad54685724, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c8a550db7574061a1210076bb43385f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 2936624300517657706}

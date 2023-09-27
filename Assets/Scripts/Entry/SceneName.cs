@@ -5,5 +5,6 @@ namespace Entry
         None,
         Menu,
         Game,
+        GameOver,
     }
 }

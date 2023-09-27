@@ -14,7 +14,7 @@ namespace Entry.Controllers
 
         public async UniTask LoadMenu()
         {
-            await sceneLoader.Unload(SceneName.Game);
+            await sceneLoader.UnloadAll();
             await sceneLoader.Load(SceneName.Menu);
         }
 
@@ -22,8 +22,14 @@ namespace Entry.Controllers
         {
             gameState.Level = level;
 
-            await sceneLoader.Unload(SceneName.Menu);
+            await sceneLoader.UnloadAll();
             await sceneLoader.Load(SceneName.Game);
+        }
+
+        public async UniTask LoadGameOver()
+        {
+            await sceneLoader.UnloadAll();
+            await sceneLoader.Load(SceneName.GameOver);
         }
     }
 }

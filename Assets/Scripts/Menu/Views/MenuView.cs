@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Entry.Views;
 using Menu.Controllers;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -19,7 +20,7 @@ namespace Menu.Views
         private Transform selectLevelButtonsParent;
 
         [SerializeField]
-        private MenuButton startButton;
+        private DpadButton startButton;
 
         [Inject]
         private MenuViewConfig viewConfig;
@@ -35,15 +36,9 @@ namespace Menu.Views
         private void Awake()
         {
             menuController.OnCreateSelectLevelButton += CreateSelectLevelButton;
-
-            InitializeInput();
-            InitializeStartButton();
-        }
-
-        private void InitializeInput()
-        {
             inputModule.move.action.performed += MoveActionPerformed;
-            inputModule.submit.action.performed += SubmitActionPerformed;
+
+            InitializeStartButton();
         }
 
         private void InitializeStartButton()
@@ -69,11 +64,6 @@ namespace Menu.Views
 
             EnsureSelectedLevelButton();
             SelectLevelClick();
-        }
-
-        private void SubmitActionPerformed(InputAction.CallbackContext context)
-        {
-            menuController.StartGame();
         }
 
         private void StartButtonClick()
@@ -110,14 +100,7 @@ namespace Menu.Views
         private void OnDestroy()
         {
             menuController.OnCreateSelectLevelButton -= CreateSelectLevelButton;
-
-            FreeInput();
-        }
-
-        private void FreeInput()
-        {
             inputModule.move.action.performed -= MoveActionPerformed;
-            inputModule.submit.action.performed -= SubmitActionPerformed;
         }
     }
 }
