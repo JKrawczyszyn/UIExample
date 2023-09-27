@@ -8,6 +8,8 @@ namespace Game.Views
         private BulletModel model;
 
         private Vector3 forward;
+        
+        public int ParentId => model.ParentId;
 
         public void Initialize(BulletModel model)
         {

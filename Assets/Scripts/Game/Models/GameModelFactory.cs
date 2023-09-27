@@ -30,8 +30,8 @@ namespace Game.Models
         private ShooterModel GetStartShooterModel()
         {
             int id = idProvider.Get();
-            Vector2 position = positionProvider.GetFreePosition(gameModel.GetShooterPositions());
-            int angle = config.Angle;
+            Vector2 position = GetFreePosition();
+            float angle = config.Angle;
             int lives = config.Lives;
             float nextTurnTime = Time.time + config.TurnTime;
             float spawnTime = Time.time;
@@ -40,6 +40,8 @@ namespace Game.Models
             return new ShooterModel(id, position, angle, lives, nextTurnTime, spawnTime, nextShootTime);
         }
 
-        public BulletModel GetBulletModel(ShooterModel model) => new(model.Position, model.Angle, config.BulletSpeed);
+        public Vector2 GetFreePosition() => positionProvider.GetFreePosition(gameModel.GetActiveShootersPositions());
+
+        public BulletModel GetBulletModel(ShooterModel model) => new(model.Position, model.Angle, config.BulletSpeed, model.Id);
     }
 }

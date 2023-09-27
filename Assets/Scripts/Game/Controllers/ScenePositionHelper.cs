@@ -14,21 +14,23 @@ namespace Game.Controllers
         [Inject]
         private Camera camera;
 
-        private Vector3 screenMin;
-        private Vector3 screenMax;
+        private Vector2 screenMin;
+        private Vector2 screenMax;
+        private Vector2 shooterPositionMin;
+        private Vector2 shooterPositionMax;
 
         [Inject]
         public void Construct()
         {
             screenMin = camera.ScreenToWorldPoint(new Vector3(0, 0, 0));
             screenMax = camera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
+            shooterPositionMin = screenMin + new Vector2(config.ShooterRadius, config.ShooterRadius);
+            shooterPositionMax = screenMax - new Vector2(config.ShooterRadius, config.ShooterRadius);
         }
 
         public Vector2 GetFreePosition(IEnumerable<Vector2> existingPositions)
         {
-            float radius = config.ShooterRadius;
-
-            var margins = new Vector2(radius, radius);
+            float margin = config.ShooterRadius;
 
             var maxAttempts = 100;
 
@@ -38,22 +40,19 @@ namespace Game.Controllers
 
             do
             {
-                position = GetRandomPosition(margins);
+                position = GetRandomPosition(shooterPositionMin, shooterPositionMax);
 
                 maxAttempts--;
 
                 if (maxAttempts == 0)
                     break;
-            } while (IsPositionOccupied(position, existingPositionsArray, radius));
+            } while (IsPositionOccupied(position, existingPositionsArray, margin));
 
             return position;
         }
 
-        private Vector2 GetRandomPosition(Vector2 margins)
+        private Vector2 GetRandomPosition(Vector2 min, Vector2 max)
         {
-            Vector3 min = screenMin + (Vector3)margins;
-            Vector3 max = screenMax - (Vector3)margins;
-
             float x = Random.Range(min.x, max.x);
             float y = Random.Range(min.y, max.y);
 
@@ -71,7 +70,9 @@ namespace Game.Controllers
             return false;
         }
 
-        public bool IsOnScreen(Vector2 position) => position.x > screenMin.x && position.x < screenMax.x
-            && position.y > screenMin.y && position.y < screenMax.y;
+        public bool IsOnScreen(Vector2 position, float margin) => position.x > screenMin.x - margin
+            && position.x < screenMax.x + margin
+            && position.y > screenMin.y - margin
+            && position.y < screenMax.y + margin;
     }
 }

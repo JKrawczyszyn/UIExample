@@ -10,6 +10,7 @@ namespace Game.Controllers
     public class GameController : ITickable
     {
         public event Action<ShooterModel> OnCreateShooter;
+        public event Action<ShooterModel> OnDestroyShooter;
         public event Action<ShooterModel> OnUpdateShooter;
         public event Action<BulletModel> OnCreateBullet;
 
@@ -32,25 +33,41 @@ namespace Game.Controllers
         private void CreateShooters(int level)
         {
             gameModel = gameModelFactory.Get(level);
-
-            foreach (ShooterModel model in gameModel.GetShootersToCreate())
-            {
-                model.Active = true;
-
-                OnCreateShooter?.Invoke(model);
-            }
         }
 
         public void Tick()
         {
-            foreach (ShooterModel model in gameModel.GetActiveShooters())
+            if (gameModel.ShootersCount() <= 1)
             {
-                UpdateTurn(model);
-                UpdateShoot(model);
+                Debug.Log("Game Over.");
+
+                return;
+            }
+
+            foreach (ShooterModel model in gameModel.Shooters)
+            {
+                if (!model.Active)
+                    ProcessRespawn(model);
+                else
+                {
+                    ProcessTurn(model);
+                    ProcessShoot(model);
+                }
             }
         }
 
-        private void UpdateTurn(ShooterModel model)
+        private void ProcessRespawn(ShooterModel model)
+        {
+            if (Time.time < model.SpawnTime)
+                return;
+
+            model.Active = true;
+            model.Position = gameModelFactory.GetFreePosition();
+
+            OnCreateShooter?.Invoke(model);
+        }
+
+        private void ProcessTurn(ShooterModel model)
         {
             if (Time.time < model.NextTurnTime)
                 return;
@@ -61,7 +78,7 @@ namespace Game.Controllers
             OnUpdateShooter?.Invoke(model);
         }
 
-        private void UpdateShoot(ShooterModel model)
+        private void ProcessShoot(ShooterModel model)
         {
             if (Time.time < model.NextShootTime)
                 return;
@@ -69,6 +86,21 @@ namespace Game.Controllers
             model.NextShootTime = Time.time + config.ShootTime;
 
             OnCreateBullet?.Invoke(gameModelFactory.GetBulletModel(model));
+        }
+
+        public void ShooterHit(ShooterModel model)
+        {
+            if (!model.Active)
+                return;
+
+            model.Active = false;
+            model.Lives--;
+            model.SpawnTime = Time.time + config.RespawnTime;
+
+            if (model.Lives <= 0)
+                gameModel.RemoveShooter(model);
+
+            OnDestroyShooter?.Invoke(model);
         }
     }
 }

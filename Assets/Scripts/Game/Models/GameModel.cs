@@ -6,35 +6,30 @@ namespace Game.Models
 {
     public class GameModel
     {
-        private ShooterModel[] shooters;
+        private List<ShooterModel> shooters;
+        public IEnumerable<ShooterModel> Shooters => shooters;
 
         public void CreateShooters(int level, Func<ShooterModel> shooterGetter)
         {
-            shooters = new ShooterModel[level];
+            shooters = new List<ShooterModel>(level);
 
-            for (var i = 0; i < shooters.Length; i++)
-                shooters[i] = shooterGetter();
+            for (var i = 0; i < level; i++)
+                shooters.Add(shooterGetter());
         }
 
-        public IEnumerable<ShooterModel> GetShootersToCreate()
-        {
-            foreach (ShooterModel model in shooters)
-                if (model != null && Time.time >= model.SpawnTime)
-                    yield return model;
-        }
 
-        public IEnumerable<Vector2> GetShooterPositions()
+        public IEnumerable<Vector2> GetActiveShootersPositions()
         {
             foreach (ShooterModel model in shooters)
-                if (model != null)
+                if (model.Active)
                     yield return model.Position;
         }
 
-        public IEnumerable<ShooterModel> GetActiveShooters()
+        public void RemoveShooter(ShooterModel model)
         {
-            foreach (ShooterModel model in shooters)
-                if (model is { Active: true })
-                    yield return model;
+            shooters.Remove(model);
         }
+
+        public int ShootersCount() => shooters.Count;
     }
 }

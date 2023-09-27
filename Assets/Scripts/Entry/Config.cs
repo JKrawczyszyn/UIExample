@@ -6,13 +6,16 @@ namespace Entry
     [CreateAssetMenu(fileName = "Config", menuName = "ScriptableObjects/Config")]
     public class Config : ScriptableObject
     {
+        [field: SerializeField]
+        public float timeScale { get; private set; }
+
         [SerializeField]
         private int[] levels;
         public IEnumerable<int> Levels => levels;
 
         [SerializeField]
-        private int angleMin, angleMax;
-        public int Angle => Random.Range(angleMin, angleMax);
+        private float angleMin, angleMax;
+        public float Angle => Random.Range(angleMin, angleMax);
 
         [field: SerializeField]
         public int Lives { get; private set; }
@@ -28,6 +31,12 @@ namespace Entry
         public float ShooterRadius { get; private set; }
 
         [field: SerializeField]
+        public float BulletRadius { get; private set; }
+
+        [field: SerializeField]
         public float BulletSpeed { get; private set; }
+
+        [field: SerializeField]
+        public float RespawnTime { get; private set; }
     }
 }
