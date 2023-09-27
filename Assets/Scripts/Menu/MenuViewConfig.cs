@@ -10,11 +10,6 @@ namespace Menu
 
         private int currentColorIndex;
 
-        public void Initialize()
-        {
-            currentColorIndex = 0;
-        }
-
         public Color NextColor() => levelColors[currentColorIndex++ % levelColors.Length];
     }
 }
