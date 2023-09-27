@@ -24,3 +24,7 @@ MonoBehaviour:
   <BulletRadius>k__BackingField: 0.05
   <BulletSpeed>k__BackingField: 1
   <RespawnTime>k__BackingField: 2
+  <Texts>k__BackingField:
+    <Start>k__BackingField: Start
+    <GameOver>k__BackingField: GAME OVER
+    <MainMenu>k__BackingField: Main Menu

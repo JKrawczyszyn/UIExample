@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Entry
 {
@@ -38,5 +40,21 @@ namespace Entry
 
         [field: SerializeField]
         public float RespawnTime { get; private set; }
+
+        [field: SerializeField]
+        public Texts Texts { get; private set; }
+    }
+
+    [Serializable]
+    public class Texts
+    {
+        [field: SerializeField]
+        public string Start { get; private set; }
+
+        [field: SerializeField]
+        public string GameOver { get; private set; }
+
+        [field: SerializeField]
+        public string MainMenu { get; private set; }
     }
 }

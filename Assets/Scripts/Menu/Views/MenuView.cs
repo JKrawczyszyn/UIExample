@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Entry;
 using Entry.Views;
 using Menu.Controllers;
 using UnityEngine;
@@ -23,6 +24,9 @@ namespace Menu.Views
         private DpadButton startButton;
 
         [Inject]
+        private Config config;
+
+        [Inject]
         private MenuViewConfig viewConfig;
 
         [Inject]
@@ -43,7 +47,7 @@ namespace Menu.Views
 
         private void InitializeStartButton()
         {
-            startButton.Initialize("Start");
+            startButton.Initialize(config.Texts.Start);
             startButton.OnClick += StartButtonClick;
             startButton.SetActive(false);
         }
