@@ -1,5 +1,5 @@
-# UI_zadanie_testowe
-**by Jarosław Krawczyszyn**
+# UI Example
+Demonstrates creating animated UI using Canvas and Input System.
 
 - Project was created in Unity 2022.3.4f1.
 - Start scene is "Entry" scene.
